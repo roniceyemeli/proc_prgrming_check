@@ -1,0 +1,32 @@
+FUNCTION dot_product(v1,v2:ARRAY_OF FLOAT) : FLOAT
+VAR
+    i,j,n,m: INTEGER;
+    ps:FLOAT;
+BEGIN
+    ps:=0;
+    n:=v1.length-1;
+    m:=v2.length-1;
+    IF (v1 <> v2) THEN
+        RETURN 0;
+    ELSE
+        FOR i FROM 0 TO n STEP 1  DO
+            ps=ps+v1[i]*v2[i];
+        END_FOR
+    END_IF
+    RETURN ps ;
+END
+
+ALGORITHM Orthogonal_vectors
+VAR
+    v: ARRAY_OF ARRAY;
+    i,j: INTEGER;
+BEGIN
+    FOR i FROM 0 TO  v.length-1 STEP 1 DO
+        FOR j FROM i+1 TO v.length-2 STEP 1  DO
+            ps:=dot_product(v[i],v[j])
+            IF (ps = 0) THEN
+                write(v[i] "et" v[j] "sont orthogonaux")
+            END_IF
+        END_FOR
+    END_FOR
+END

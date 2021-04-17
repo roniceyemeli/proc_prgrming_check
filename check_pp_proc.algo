@@ -1,0 +1,34 @@
+
+PROCEDURE dot_product( VAR v1, v2 : ARRAY_OF FLOAT; VAR ps: INTEGER)
+VAR
+    i,j,n,m: INTEGER;
+    
+BEGIN
+    n := v1.length-1; 
+    m := v2.length-1;
+    ps := 0;
+    
+    IF (n <> m) THEN
+        write("you can't calculate the dot product")
+        ps := NaN;
+    ELSE 
+        FOR i FROM 0 TO n STEP 1  DO
+            ps := ps + v1[i]*v2[i];
+        END_FOR
+    END_IF
+    write("le produit scalaire des vecteurs v1 et v2 est", ps);
+END
+ALGORITHM Orthogonal_vectors
+VAR
+    v: ARRAY_OF ARRAY;
+    i,j: INTEGER;
+BEGIN
+    FOR i FROM 0 TO  v.length-1 STEP 1 DO
+        FOR j FROM i+1 TO v.length-2 STEP 1  DO
+            dot_product(v[i],v[j],ps)
+            IF (ps = 0) THEN
+                write(v[i] "et" v[j] "sont orthogonaux")
+            END_IF
+        END_FOR
+    END_FOR
+END
